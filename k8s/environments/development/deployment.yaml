@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pal-tracker
+spec:
+  template:
+    spec:
+      containers:
+        - name: pal-tracker-container
+          image: YOUR-DOCKERHUB-USERNAME/pal-tracker:build-X
+          env:
+            - name: SPRING_DATASOURCE_HIKARI_MAXIMUMPOOLSIZE
+              valueFrom:
+                configMapKeyRef:
+                  name: pal-tracker
+                  key: spring.datasource.hikari.maximumpoolsize
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              valueFrom:
+                configMapKeyRef:
+                  name: pal-tracker
+                  key: management.endpoints.web.exposure.include
+            - name: MANAGEMENT_ENDPOINT_HEALTH_SHOWDETAILS
+              valueFrom:
+                configMapKeyRef:
+                  name: pal-tracker
+                  key: management.endpoint.health.showdetails

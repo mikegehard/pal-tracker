@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pal-tracker
+data:
+  welcome.message: "hello from development"
+  spring.datasource.hikari.maximumpoolsize: "1"
+  management.endpoints.web.exposure.include: "*"
+  management.endpoint.health.showdetails: always
